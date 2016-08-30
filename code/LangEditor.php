@@ -160,16 +160,7 @@ class LangEditor extends LeftAndMain {
 				$map[$namespace] = $namespace;
 				$entities = new ArrayList();
 				if(is_array($array_of_entities)) {
-					foreach($array_of_entities as $entity => $str) {
-						if (is_array($str)) {
-							$str = $str[0];
-						}
-						$entities->push(new ArrayData(array(
-							'Entity' => $entity,
-							'EntityField' => new TextField("t[".self::$currentLocale."][$namespace][$entity]","",stripslashes($str)),
-							'Namespace' => $namespace
-						)));
-					}
+					$this->pushDataRecursive($entities, $array_of_entities, $namespace);	
 				}
 				
 				$namespaces->push(new ArrayData(array(
@@ -183,6 +174,21 @@ class LangEditor extends LeftAndMain {
 		$this->NamespaceDropdownOptions = $map;
 
 	}
+	
+	public function pushDataRecursive($entities, $array_of_entities, $namespace) {
+        foreach($array_of_entities as $entity => $str) {
+            if (is_array($str)) {
+                $this->pushDataRecursive($entities, $str, $namespace);
+
+            } else {
+                $entities->push(new ArrayData(array(
+                    'Entity' => $entity,
+                    'EntityField' => new TextField("t[" . self::$currentLocale . "][$namespace][$entity]", "", stripslashes($str)),
+                    'Namespace' => $namespace
+                )));
+            }
+        }
+    }
 	
 	public function Breadcrumbs($unlinked = false) {
 		$items = parent::Breadcrumbs(true);
