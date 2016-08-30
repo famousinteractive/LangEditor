@@ -8,8 +8,8 @@
 		"email": "unclecheese@leftandmain.com"
 	}],
 	"require": {
-		"silverstripe/framework": "~3.2",
-		"silverstripe/cms": "~3.2"
+		"silverstripe/framework": "~3.2.1",
+		"silverstripe/cms": "~3.2.1"
 	},
     "extra": {
         "installer-name": "langeditor"
