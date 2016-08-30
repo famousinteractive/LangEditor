@@ -42,7 +42,7 @@ class LangEditor extends LeftAndMain {
 	}
 */	
 	public static function get_lang_dir($module) {
-		return BASE_PATH.DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR."lang";
+		return BASE_PATH.DIRECTORY_SEPARATOR.EXTRADIR.DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR."lang";
 	}
 	
 	public static function get_lang_file($module, $lang) {
